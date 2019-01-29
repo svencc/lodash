@@ -1,0 +1,110 @@
+<html>
+<head>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script>
+
+        // search the index of an element
+        const dinosaurs = ['Tyrannosaurus', 'Stegosaurus', 'Allosaurus', 'Velociraptor'];
+        console.log(_.indexOf(dinosaurs, 'Tyrannosaurus'));
+        console.log(dinosaurs.indexOf('Tyrannosaurus')); // vanilla js
+
+        console.log(_.head(dinosaurs)); // first item
+        console.log(_.last(dinosaurs)); // last item
+
+        const dinosaurs2 = ['Tyrannosaurus', 'Stegosaurus', 'Allosaurus', 'Velociraptor', 'Tyrannosaurus'];
+        console.log(_.uniq(dinosaurs2)); // unique elements
+
+        const new_dinos = ['Tyrannosaurus','Stegosaurus','Hadrosaur'];
+        const new_pens = ['Pen 1', 'Pen 2', 'Pen 3'];
+
+        // Mengen Operatoren
+        //////////////////////////////////////////////////////////////////////////////
+        console.log(_.zip(new_dinos, new_pens));
+        console.log(_.intersection(new_dinos, dinosaurs));
+        console.log(_.union(new_dinos, dinosaurs));
+
+
+        // DEEP CLONE!!!
+        console.log(_.cloneDeep([1,2,3, [4,5]]));
+
+        // Picking collections
+        //////////////////////////////////////////////////////////////////////////////
+        const dinosaurs3 = [
+            {name: 'Terry', species: 'Tyrannosaurus', pen: '1A'},// <<<<<<<<<<<<<<<||
+            {name: 'Theresa', species: 'Tyrannosaurus', pen: '1B'},//              ||
+            {name: 'Henry', species: 'Hadrosaur', pen: '2'},//<<<<<<<<<<<<<<<<<<<<<||
+            {name: 'Harriet', species: 'Hadrosaur', pen: '3'},//                   ||
+            {name: 'Stanley', species: 'Stegosaurus', pen: '4'},//<<<<<<<<<<<<<<<<<||
+        ];//                                                                       ||
+        console.log(_.at(dinosaurs3, [0, 2, 4]));//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+
+        // get row of items
+        console.log(_.map(dinosaurs3, 'name')); // gets array with all names
+
+        // searching elements
+        console.log(_.filter(dinosaurs3, {'species': 'Hadrosaur'})); // filter with where condition instead filter fn!
+
+        // checking elements
+        console.log(_.some(dinosaurs3, {'species': 'Hadrosaur'})); // checks if condition is true; one result found
+        console.log(_.every(dinosaurs3, {'species': 'Hadrosaur'})); // checks if condition is true for EACH item
+
+        // CATEGORIZE DATA
+        //////////////////////////////////////////////////////////////////////////////
+        const dinosaurs4 = [
+            {name: 'Terry', species: 'Tyrannosaurus', pen: '1A', diet: 'Meat'},
+            {name: 'Theresa', species: 'Tyrannosaurus', pen: '1B', diet: 'Meat'},
+            {name: 'Henry', species: 'Hadrosaur', pen: '2', diet: 'Plant'},
+            {name: 'Harriet', species: 'Hadrosaur', pen: '3', diet: 'Plant'},
+            {name: 'Stanley', species: 'Stegosaurus', pen: '4', diet: 'Plant'}
+        ];
+        console.log(_.countBy(dinosaurs4, 'diet')); // count per key
+        console.log(_.groupBy(dinosaurs4, 'diet')); // categorize/groups items per key
+        console.log(_.sortBy(dinosaurs4, 'species', 'name')); // Sorting (multiple fields)
+
+        // STATISTICs, Random
+        //////////////////////////////////////////////////////////////////////////////
+        const questions = [
+            {question: 'When did most dinosaurs become extinct?', answer: '65 million years ago'},
+            {question: 'What do you call a person who studies dinosaurs?', answer: "paleontologist"},
+            {question: 'What do you call a dinosaur that eats meat?', answer: 'Carnivore'},
+            {question: 'What family of dinosaurs was the largest in weight?', answer: 'Sauropods'}
+        ];
+        console.log( _.sample(questions) ); // gets one random element from array
+        console.log( _.sampleSize(questions, 2) ); // gets 2 random, unique elements from array
+        console.log( _.shuffle(questions) ); // shuffles the array randomly
+
+        // MAP-REDUCE
+        ////////////////////////////////////////////////////////////////////////////////
+        const dinosaurs5 = [
+            {name: 'Terry', length: 30, weight: 6000, age: 6},
+            {name: 'Theresa', length: 32, weight: 6340, age: 4},
+            {name: 'Henry', length: 12, weight: 889, age: 12},
+            {name: 'Harriet', length: 14, weight: 900, age: 13},
+            {name: 'Stanley', length: 15, weight: 1213, age: 1}
+        ];
+        console.log( _.map(dinosaurs5, (element) => element.weight + ' kilograms') ); // gets a list of all kilograms
+
+        // CHAINING and CONTROL-FLOW
+        ////////////////////////////////////////////////////////////////////////////////
+
+        // throttles throtteledFn(), so it will be executed again only after 9 seconds
+        const throtteledFn = _.throttle( (fn) => fn, 9000);
+
+        // debounce debouncedFn() function calls
+        const debouncedFn = _.debounce( (fn) => fn, 200);
+
+        // delay delayedFn(); so its executed after 5 seconds
+        const delayedFn = _.delay( (fn) => fn, 5000);
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<h1>Welcome to Super-Dino Park!</h1>
+</body>
+</html>
